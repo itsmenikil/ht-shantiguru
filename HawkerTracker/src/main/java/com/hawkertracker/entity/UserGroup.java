@@ -6,10 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "ht.cnfg.usergroup")
+@Table(name = "ht.cnfg.usergroup",uniqueConstraints = {@UniqueConstraint(columnNames = {"usergroup_name"},name="u_usergroup_name_constraint")})
 public class UserGroup {
 
 	@Id

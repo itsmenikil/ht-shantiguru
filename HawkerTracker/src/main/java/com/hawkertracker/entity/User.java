@@ -12,12 +12,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
 import com.hawkertracker.utility.entityauditor.Auditable;
 
 @Entity
-@Table(name = "ht.cnfg.user")
+@Table(name = "ht.cnfg.user",uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"user_name"},name="u_user_name_constraint"),
+		@UniqueConstraint(columnNames = {"user_email"},name="u_user_email_constraint"),
+		@UniqueConstraint(columnNames = {"user_contact_number"},name="u_user_contact_number_constraint")})
 public class User extends Auditable<String> {
 	
 	@Id

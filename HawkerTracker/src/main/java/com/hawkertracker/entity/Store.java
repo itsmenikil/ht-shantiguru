@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.hawkertracker.utility.entityauditor.Auditable;
+
 @Entity
 @Table(name = "ht.mst.store")
-public class Store {
+public class Store extends Auditable<String> {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,12 +39,16 @@ public class Store {
 	@NotEmpty
 	@Column(name="store_pincode")
 	private String storePincode;
+	@NotEmpty
+	@Column(name="store_contact")
+	private String storeContact;
 	
+	public Store() {
+		
+	}
 	
-	
-	public Store(Long storeId, String storeName, String storeLogoPath, String storeAddressLine1,
-			String storeAddressLine2, String storeCountry, String storeState, String storePincode) {
-		this.storeId = storeId;
+	public Store(String storeName, String storeLogoPath, String storeAddressLine1,
+			String storeAddressLine2, String storeCountry, String storeState, String storePincode,String storeContact) {
 		this.storeName = storeName;
 		this.storeLogoPath = storeLogoPath;
 		this.storeAddressLine1 = storeAddressLine1;
@@ -50,6 +56,7 @@ public class Store {
 		this.storeCountry = storeCountry;
 		this.storeState = storeState;
 		this.storePincode = storePincode;
+		this.storeContact=storeContact;
 	}
 	
 	public Long getStoreId() {
@@ -100,12 +107,24 @@ public class Store {
 	public void setStorePincode(String storePincode) {
 		this.storePincode = storePincode;
 	}
+
+	public String getStoreContact() {
+		return storeContact;
+	}
+
+	public void setStoreContact(String storeContact) {
+		this.storeContact = storeContact;
+	}
+
 	@Override
 	public String toString() {
 		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", storeLogoPath=" + storeLogoPath
 				+ ", storeAddressLine1=" + storeAddressLine1 + ", storeAddressLine2=" + storeAddressLine2
 				+ ", storeCountry=" + storeCountry + ", storeState=" + storeState + ", storePincode=" + storePincode
-				+ "]";
+				+ ", storeContact=" + storeContact + ", createdBy=" + createdBy + ", creationDate=" + creationDate
+				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate+"]";
 	}
+
+	
 	
 }
