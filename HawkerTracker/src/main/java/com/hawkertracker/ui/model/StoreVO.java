@@ -1,6 +1,11 @@
 package com.hawkertracker.ui.model;
 
+import java.io.IOException;
 import java.util.List;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StoreVO {
 
@@ -128,4 +133,9 @@ public class StoreVO {
 				+ userGroupIds + "]";
 	}
 
+	
+	public static StoreVO fromJson(String storeJson) throws JsonParseException, JsonMappingException, IOException {
+			ObjectMapper object=new ObjectMapper();
+			return object.readValue(storeJson, StoreVO.class);
+	}
 }
